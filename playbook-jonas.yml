@@ -1,0 +1,39 @@
+---
+- name: Afficher le nombre d'interfaces  activées sur un routeur Cisco
+  hosts: routers
+  tasks:
+    - name: Exécuter la commande show ip interface brief
+      ios_command:
+        commands:
+          - show ip interface brief
+      register: result
+
+    - name: Compter les interfaces activées
+      set_fact:
+        active_interface_count: "{{ result.stdout_lines[0] | select('search', 'up') | list | length }}"
+
+    - name: Afficher le nombre d'interfaces  activées
+      debug:
+        msg: "Le nombre d'interfaces activées est : {{ active_interface_count }}"
+    - name: Compter le nombre d’interfaces désactivées
+      set_fact:
+        disable_interface_count: "{{ result.stdout_lines[0] | select('search', 'down') | list | length }}"
+
+    - name: Afficher le nombre d'interfaces désactivées
+      debug:
+        msg: "Le nombre d'interfaces désactivées est : {{ disable_interface_count }}"
+
+
+    - name: Exécuter la commande show ip route
+      ios_command:
+        commands:
+          - show ip route
+      register: result
+
+    - name: Extraire les réseaux connectés directement
+      set_fact:
+        reseaux_connectes: "{{ result.stdout_lines | select('search', '^D|C') | list }}"
+
+    - name: Afficher la liste des réseaux connectés
+      debug:
+        var: reseaux_connectes
