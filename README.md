@@ -4,7 +4,7 @@ concrétement, le travail consiste à se connecter aux routeurs cisco via SSH, a
   -le nombre d'interfaces activées
   -le nombre d'interface désactivées
   -la liste des réseaux connectés directements au routeurs. 
-  -NB. S'agissant des réseaux connectés directement, toute route configyrée avec comme paramètre , l'interface de sortie, va apparaitre dans la liste comme route connecté directement.
+  -NB. S'agissant des réseaux connectés directement, toute route configurée avec comme paramètre , l'interface de sortie, va apparaitre dans la liste comme réseau connecté directement.
   Pour réaliser ce lab, deux fichiers nous sont utiles: le fichier hosts dans lequel nous definissons les routeurs et leurs paramètres de connexion via SSH; ainsi que le playbook pour écrire notre code afin d'exécuter 
   toutes les tâches.
   
