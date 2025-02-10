@@ -1,6 +1,8 @@
 [routers]
-devnetsandboxiosxe.cisco.com ok
+devnetsandboxiosxe.cisco.com 
+
 [routers:vars]
+
 ansible_user=admin
 ansible_password=C1sco12345
 ansible_ssh_pass=C1sco12345
